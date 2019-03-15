@@ -47,7 +47,7 @@ public class Player extends GameObject implements PhysicBody {
         this.desertEagle = new DesertEagle();
         this.runHitObject = new RunHitObject(
                 EnemyFollow.class,
-                Enemies.class, BulletEnemy.class, BulletBoss.class, BulletEnemyFollow.class);
+                Enemies.class, BulletEnemy.class, BulletEnemyFollow.class);
         this.runHitPlatform = new RunHitObject(Platform.class);
 
        this.damage=15;
