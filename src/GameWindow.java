@@ -19,18 +19,12 @@ public class GameWindow extends JFrame {
 
         this.event();
 
-        addWall();
-
         this.setVisible(true);
 
 
     }
 
-    private void addWall(){
-        Map map = Map.load("resources/mapcreate/test.json");
-        map.generate();
-        System.out.println(map);
-    }
+
     private void setupGameCanvas() {
         this.gameCanvas = new GameCanvas();
         this.add(gameCanvas);

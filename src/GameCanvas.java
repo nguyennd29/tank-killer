@@ -1,17 +1,11 @@
+import Tilemap.Map;
 import base.GameObjectManager;
 import base.Settings;
 import base.Vector2D;
 import game.Gun.CreateDesertEagle;
-import game.Gun.CreateGunAK47;
-import game.Gun.CreateGunKar98;
-import game.Gun.CreateGunShotGun;
 import game.ViewPort;
-
-
-import game.boss.CreateBoss;
-import game.enemy.EnemyCreate;
-import game.enemyfollow.EnemyFollowCreate;
 import game.player.Player;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,20 +18,27 @@ public class GameCanvas extends JPanel {
     private BufferedImage backBuffered;
     public Player player;
     private Graphics2D g2d;
-    //    private ViewPort viewPort;
-    Vector2D initPosition= new Vector2D(600,2000);
 
-    public GameCanvas() {
+    //    private ViewPort viewPort;
+
+    GameCanvas() {
         this.setSize(Settings.WINDOW_WIDTH, Settings.WINDOW_HEIGHT);
 
-        setupBackBuffered();
+        this.setupBackBuffered();
         this.setBackground(Color.black);
 
         setupCharacter();
 
 //        this.viewPort=new ViewPort();
         ViewPort.instance.getFollowOffset().set(-Settings.GAMEPLAY_WIDTH/2,-Settings.GAMEPLAY_HEIGHT/2);
+        this.addWall();
         this.setVisible(true);
+    }
+
+    private void addWall(){
+        Map map = Map.load("resources/mapcreate/test.json");
+        map.generate();
+        System.out.println(map);
     }
 
     private void setupBackBuffered() {
@@ -48,20 +49,17 @@ public class GameCanvas extends JPanel {
 
     private void setupCharacter() {
 //        GameObjectManager.instance.add(new Background());
-        GameObjectManager.instance.add(new EnemyFollowCreate());
-        GameObjectManager.instance.add(new EnemyCreate());
-        GameObjectManager.instance.add(new CreateBoss());
-        GameObjectManager.instance.add(new CreateGunAK47());
-        GameObjectManager.instance.add(new CreateGunKar98());
-        GameObjectManager.instance.add(new CreateDesertEagle());
-        GameObjectManager.instance.add(new CreateGunShotGun());
+//        GameObjectManager.instance.add(new EnemyFollowCreate());
+//        GameObjectManager.instance.add(new EnemyCreate());
+//        GameObjectManager.instance.add(new CreateBoss());
+//        GameObjectManager.instance.add(new CreateDesertEagle());
         this.setupPlayer();
 
     }
 
 
     private void setupPlayer() {
-        Player.instance.position.set(initPosition);
+        Player.instance.position.set(600,2000);
 
         GameObjectManager.instance.add(Player.instance);
 
