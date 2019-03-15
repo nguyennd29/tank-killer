@@ -36,7 +36,7 @@ public class GameCanvas extends JPanel {
     }
 
     private void addWall(){
-        Map map = Map.load("resources/mapcreate/test.json");
+        Map map = Map.load("resources/tank-killer-map/tank-killer-map.json");
         map.generate();
         System.out.println(map);
     }
